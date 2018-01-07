@@ -8,12 +8,12 @@ import {
 import * as Api from '../util/api';
 
 export const rootChangeCategoryAction = (category, history) => {
-    return dispatch => {        
-        dispatch({ type: ROOT_CHANGE_CATEGORY, payload: category });        
+    return dispatch => {
+        dispatch({ type: ROOT_CHANGE_CATEGORY, payload: category });
         dispatch(rootListPostsAction(category));
         if (history) {
             history.push(`/${category}`);
-        }        
+        }
     }
 }
 

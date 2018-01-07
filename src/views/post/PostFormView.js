@@ -11,7 +11,7 @@ import { postHandleChangeAction, postChangeCategoryAction, postFormSaveAction, p
 class PostFormView extends Component {
 
     render() {
-        let { PostEntity, fieldsErros, openDialogState, fab } = this.props;
+        const { PostEntity, fieldsErros, openDialogState, fab } = this.props;
         const actions = [
             <FlatButton
                 label="Cancel"

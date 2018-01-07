@@ -8,6 +8,8 @@ import {
     , ROOT_EDIT_POST
     , POST_REMOVE
 } from '../actions/ActionsTypes';
+import sortBy from 'sort-by';
+
 
 const INITIAL_STATE = {
     categorySelected: 'all'
@@ -27,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
         case ROOT_LIST_CATEGORIES:
             return { ...state, categories: action.payload }
         case ROOT_LIST_POSTS:
-            return { ...state, posts: action.payload }
+            return { ...state, posts: action.payload.sort(sortBy(state.sortSelected)) }
         case ROOT_DIALOG_POST_FORM:
             return { ...state, openDialogState: action.payload }
         case ROOT_UPDATE_POSTS:

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import sortBy from 'sort-by';
 import {
   rootChangeCategoryAction
   , rootChangeSortAction
@@ -25,7 +24,7 @@ class RootView extends Component {
   }
 
   render() {
-    let { history, posts, categories, categorySelected, sortSelected } = this.props;
+    const { history, posts, categories, categorySelected, sortSelected } = this.props;
     return (
       <div>
         <MenuNavTop title="Leitura"
@@ -53,7 +52,6 @@ const mapStateToProps = state => (
     , sortSelected: state.RootReducer.sortSelected
     , categories: state.RootReducer.categories
     , posts: (state.RootReducer.categorySelected !== 'all') ? state.RootReducer.posts.filter(p => !p.deleted && p.category === state.RootReducer.categorySelected) : state.RootReducer.posts.filter(p => !p.deleted)
-      .sort(sortBy(state.RootReducer.sortSelected))
     , openDialogState: state.RootReducer.openDialogState
   }
 );

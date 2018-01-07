@@ -31,8 +31,8 @@ import CommentFromView from '../comment/CommentFormView';
 class PostDetailFormView extends Component {
 
     componentDidMount() {
-        let { PostEntity, history } = this.props;
-        let postId = this.props.match.params.postId;
+        const { PostEntity, history } = this.props;
+        const postId = this.props.match.params.postId;
         this.props.getPostDetailAction(postId, this.props.history);
         this.props.getAllCommentsByPostIdAction(postId);
 
@@ -45,6 +45,9 @@ class PostDetailFormView extends Component {
     render() {
         let { PostEntity, comments } = this.props;
         let { title, body, author, voteScore, timestamp } = PostEntity;
+
+        comments.sort((a,b) => b.voteScore - a.voteScore);
+
         return (<div>
             <AppBar title="Detail"
                 iconElementLeft={

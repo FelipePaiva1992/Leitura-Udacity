@@ -6,6 +6,7 @@ import {
     , ROOT_DIALOG_POST_FORM
     , POST_HANDLE_CHANGE
     , POST_CHANGE_CATEGORY
+    , ROOT_LIST_POSTS
     , POST_LOAD_DATA
     , POST_FORM_SAVE
     , POST_VALID_FORM
@@ -32,9 +33,9 @@ export const postChangeCategoryAction = category => {
 }
 
 export const postFormSaveAction = (PostEntity) => {
-    debugger;
     let fieldsErros = [];
     let newPost = { ...PostEntity };
+    console.log(newPost)
     let insert = false;
 
     if (newPost.id === '') {
@@ -64,6 +65,14 @@ export const postFormSaveAction = (PostEntity) => {
                     dispatch({ type: ROOT_EDIT_POST, payload: { ...newPost, ...post } });
                     dispatch({ type: ROOT_DIALOG_POST_FORM, payload: false });
                     dispatch({ type: POST_CLEAN_FORM });
+                    Api.getAllPosts().then(posts => {
+                        posts.map(post => {
+                            Api.getAllCommentsByPostId(post.id).then(comments => {
+                                post.totalComments = comments.length;
+                                dispatch({ type: ROOT_LIST_POSTS, payload: posts })
+                            });
+                        });
+                    });
                 });
             }
         } else {

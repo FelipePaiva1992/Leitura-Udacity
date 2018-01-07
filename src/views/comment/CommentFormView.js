@@ -6,7 +6,7 @@ import { postDetailOpenDialogCommentAction, postDetailCommentSaveAction, postDet
 
 class CommentFormView extends Component {
     render() {
-        let { PostEntity, CommentEntity, fieldsErros, openDialogState } = this.props;
+        const { PostEntity, CommentEntity, fieldsErros, openDialogState } = this.props;
         const actions = [
             <FlatButton
                 label="Cancel"

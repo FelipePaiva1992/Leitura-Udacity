@@ -12,7 +12,7 @@
 ## Who to Execute the Project
 * Install and start the Project ( in a new terminal tab )
     - `npm install`
-    - `node server`
+    - `npm start`
 
 ## What You're Getting
 ```bash
